@@ -2,7 +2,7 @@
 
 **Cross Join** - прямое декартово произведение двух таблиц. Каждая строка первой таблицы соединяется со всеми строками второй 
 
-### Вариант 1
+### Без null
 
 #### Код
 
@@ -26,3 +26,26 @@ from tab_A
 #### Теория
 
 ![Фрейм таблицы](tab_1.png)
+
+
+### С null в таблице A
+
+#### Код
+
+```sql
+create temp table tab_A (col_a int);
+insert into tab_A values (1), (2), (null);
+
+create temp table tab_B (col_b int);
+insert into tab_B values (generate_series(1, 2));
+
+select * from tab_A
+	cross join tab_B;
+```
+
+#### Вывод
+![Вывод SQL кода](code_2.png)
+
+#### Теория
+
+![Фрейм таблицы](tab_2.png)
